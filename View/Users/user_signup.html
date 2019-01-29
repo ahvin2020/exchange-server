@@ -1,0 +1,73 @@
+[[define "user_signup"]]
+<div class="panel panel-default" ng-controller="UserSignupCtrl">
+	<div class="panel-body">
+		<form class="form-horizontal" name="signupForm" method="post" action="/signup" data-parsley-validate>
+			<fieldset>
+				<legend>Sign Up</legend>
+				
+				<!-- flash -->
+				[[template "flash" .]]
+				
+				(todo: signup with facebook)
+			   	<div class="form-group">
+			   		<label class="col-md-4 control-label" for="email">Email:</label>
+					<div class="col-md-6">
+						<input id="email" name="email" type="email" ng-model="user.Email" placeholder="Email" class="form-control input-md" required data-parsley-required-message="Please enter your email" data-parsley-trigger="change">
+					</div>
+				</div>
+				<div class="form-group">
+			   		<label class="col-md-4 control-label" for="username">Username:</label>
+					<div class="col-md-6">
+						<input id="username" name="username" type="text" ng-model="user.Username" placeholder="Username" class="form-control input-md" required data-parsley-required-message="Please enter your username" data-parsley-trigger="change">
+					</div>
+				</div>
+				<div class="form-group">
+			   		<label class="col-md-4 control-label" for="password">Password:</label>
+					<div class="col-md-6">
+						<input id="password" name="password" type="password" ng-model="user.Password" placeholder="Password" class="form-control input-md" required data-parsley-required-message="Please enter your password" data-parsley-minlength="8" data-parsley-minlength-message="Short passwords are easy to guess. Try one with at least 8 characters." data-parsley-trigger="change">
+					</div>
+				</div>
+				<div class="form-group">
+			   		<label class="col-md-4 control-label" for="confirm_password">Confirm Password:</label>
+					<div class="col-md-6">
+						<input id="confirm_password" name="confirm_password" type="password" ng-model="user.ConfirmPassword" placeholder="Confirm Password" class="form-control input-md" required data-parsley-required-message="Please confirm your password" data-parsley-equalto="#password" data-parsley-equalto-message="Passwords do not match" data-parsley-trigger="change">
+					</div>
+				</div>
+				<div class="form-group">
+			   		<label class="col-md-4 control-label" for="country">Country:</label>
+					<div class="col-md-6">
+						<select id="country" name="country" ng-model="user.Country" class="form-control" ng-options="c.Id as c.Name for c in country_list" required data-parsley-required-message="Please select your country">
+							<option value="" selected disabled>(Please choose one)</option>
+						</select>
+					</div>
+				</div>
+				(todo: captcha)
+				<div class="form-group">
+					<div class="col-md-4 col-md-offset-4">
+						<button id="signup" name="signup" class="btn btn-primary">Sign Up For Free!</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				Already have an account? <a ng-href="/login">Login here</a>
+			</div>
+		</div>
+	</div>
+</div>
+	
+<script type="text/javascript">
+	// fill in country value
+	app.value('country_list', [[.countryList]]);
+	
+	// fill in form value if previously submitted
+	app.value('user', {
+	    Email: [[.email]],
+	    Username: [[.username]],
+	    Country: parseInt([[.country]])
+	});
+</script>
+<script src="/public/js/Users/user_signup.js"></script>
+[[end]]

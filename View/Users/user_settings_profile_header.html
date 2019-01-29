@@ -1,0 +1,31 @@
+[[define "user_profile_header"]]
+<div class="panel panel-default" ng-controller="UserSettingsProfileHeaderCtrl">
+	<div class="panel-body">
+		<div class="col-md-3">
+			<div class="alert alert-danger" ng-show="errorMsg">{{errorMsg}}</div>
+			<div class="upload-progress" ng-show="f.progress >= 0">
+		        <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
+		    </div>
+		      
+			<div id="settings-profile-pic-container">
+				<img id="settings-profile-pic-img" ng-src="{{user_profile_pic_link}}" alt="Profile Pic"/>
+				<label for="file-upload-button" id="settings-profile-pic-upload-label">
+				    Change Image
+				</label>
+				<input id="file-upload-button" type="file" ngf-select="uploadPic($file)" accept="image/*" ngf-max-size="5MB"/>
+			</div>
+		</div>
+		
+		<div class="col-md-7">
+			<h3>@{{user.Username}}</h3>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	app.value('user', [[.user]]);
+	app.value('user_profile_pic_link', [[.userProfilePicLink]]);
+</script>
+<script src="/public/js/Users/user_settings_profile_header.js"></script>
+[[end]]
+

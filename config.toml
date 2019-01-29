@@ -1,0 +1,21 @@
+[general]
+public_path   = "Public"
+upload_path   = "Upload"
+bower_path   = "bower_components"
+template_path = "View"
+
+[cookie]
+mac_secret = "secret string which has over 256-bit entropy"
+secure     = false
+
+[database]
+user     = "root"
+password = ""
+hostname = "127.0.0.1"
+port     = "3306"
+database = "exchange"
+
+[csrf]
+key    = "csrf_token"
+cookie = "XSRF-TOKEN"
+header = "X-XSRF-TOKEN"

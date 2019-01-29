@@ -1,0 +1,60 @@
+[[define "user_currency_index"]]
+<div class="row" ng-controller="UserCurrencyCtrl">
+	<div class="col-md-4 col-md-offset-4">
+		<button class="btn btn-primary" ng-click="show_usercurrency_form(-1)">Add Currency</button>
+	</div>
+	
+	<table class="table">
+		<tr ng-repeat="usercurrency in usercurrency_list">
+			<td data-title="'Sell Amount'">{{usercurrency.SellAmount}}</td>
+			<td data-title="'Sell Currency'">{{usercurrency.SellCurrency}}</td>
+			<td data-title="'Buy Amount'">{{usercurrency.BuyAmount}}</td>
+			<td data-title="'Buy Currency'">{{usercurrency.BuyCurrency}}</td>
+			<td data-title="'Actions'">
+				<button class="btn btn-primary" ng-click="show_usercurrency_form(usercurrency.Id)">Edit</button>
+				<button class="btn btn-danger" ng-click="delete_usercurrency(usercurrency.Id)">Delete</button>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<script type="text/ng-template" id="user_currency_form.html">
+	<div class="panel panel-default">
+		<div class="panel-body" data-parsley-validate>
+			<div class="modal-header">
+				<legend>Edit Profile</legend>
+			</div>
+			<div class="modal-body">
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="buy_amount">Buy Amount:</label>
+      					<input name="buy_amount" type="number" ng-model="usercurrency.BuyAmount" placeholder="Buy Amount" class="form-control input-md" required data-parsley-required-message="Please enter buy amount" data-parsley-trigger="blur">
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="buy_currency">Buy Currency:</label>
+      					<input name="buy_currency" type="text" ng-model="usercurrency.BuyCurrency" placeholder="Buy Currency" class="form-control input-md" required data-parsley-required-message="Please enter buy currency" data-parsley-trigger="blur">
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="sell_amount">Sell Amount:</label>
+      					<input name="sell_amount" type="number" ng-model="usercurrency.SellAmount" placeholder="Sell Amount" class="form-control input-md" required data-parsley-required-message="Please enter sell amount" data-parsley-trigger="blur">
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="sell_currency">Sell Currency:</label>
+      					<input name="sell_currency" type="text" ng-model="usercurrency.SellCurrency" placeholder="Sell Currency" class="form-control input-md" required data-parsley-required-message="Please enter sell currency" data-parsley-trigger="blur">
+					</div>
+			</div>
+			 <div class="modal-footer">
+				<div class="form-group">
+					<div class="col-md-4">
+						<button class="btn btn-primary" ng-click="close(null)">Cancel</button>
+					</div>
+					<div class="col-md-4">
+						<button class="btn btn-primary" ng-click="close(usercurrency)">Update</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+     
+<script src="/public/js/usercurrency.js"></script>
+[[end]]

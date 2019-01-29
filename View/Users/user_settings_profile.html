@@ -1,0 +1,92 @@
+[[define "user_settings_profile"]]
+
+[[template "user_settings_profile_header" .]]
+
+<div class="panel panel-default" ng-controller="UserSettingsProfileCtrl">
+	<div class="panel-body">
+		<form class="form-horizontal" name="settingsProfileForm" method="post" action="/settings/profile" data-parsley-validate>
+			<fieldset>
+				<legend>Edit Profile</legend>
+				
+				<!-- flash -->
+				[[template "flash" .]]
+				
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="username">Username:</label>
+					<div class="col-md-6">
+						<p class="form-control-static">{{user.Username}}</p>
+					</div>
+		       	</div>
+		       	<div class="form-group">
+					<label class="col-md-4 control-label" for="email">Email:</label>
+					<div class="col-md-6">
+		                <input id="email" name="email" type="email" ng-model="user.Email" placeholder="Email" class="form-control input-md" required data-parsley-required-message="Please enter your email" data-parsley-trigger="change">
+					</div>
+		       	</div>
+		       	<div class="form-group">
+					<label class="col-md-4 control-label" for="first_name">First Name:</label>
+					<div class="col-md-6">
+		                <input id="first_name" name="first_name" type="text" ng-model="user.FirstName" placeholder="First Name" class="form-control input-md">
+					</div>
+		       	</div>
+		       	<div class="form-group">
+					<label class="col-md-4 control-label" for="last_name">Last Name:</label>
+					<div class="col-md-6">
+		                <input id="last_name" name="last_name" type="text" ng-model="user.LastName" placeholder="Last Name" class="form-control input-md">
+					</div>
+		       	</div>
+		       	<div class="form-group">
+			   		<label class="col-md-4 control-label" for="gender">Gender:</label>
+					<div class="col-md-6">
+						<select id="gender" name="gender" ng-model="user.Gender" class="form-control" ng-options="g.Id as g.Name for g in gender_list">
+							<option value="" selected disabled>(Please choose one)</option>
+						</select>
+					</div>
+				</div>
+		       	<div class="form-group">
+		       		<label class="col-md-4 control-label" for="birthday">Birthday:</label>
+			       	<div class="col-md-6">
+			       		<span class="input-group">
+							<input id="birthday" name="birthday" ng-model="user.Birthday" type="text" class="form-control" datepicker-popup="dd-MM-yyyy" is-open="datePickerIsOpen" min-date="'1900-01-01'" max-date="today" close-text="Close" />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</span>
+			        </div>
+		        </div>
+				<div class="form-group">
+			   		<label class="col-md-4 control-label" for="country">Country:</label>
+					<div class="col-md-6">
+						<select id="country" name="country" ng-model="user.CountryId" class="form-control" ng-options="c.Id as c.Name for c in country_list" required data-parsley-required-message="Please select your country"></select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="last_name">About Me:</label>
+					<div class="col-md-6">
+		                <textarea id="bio" name="bio" ng-model="user.Bio" placeholder="Describe Yourself" class="form-control input-md"></textarea>
+					</div>
+		       	</div>
+		       	
+		       	<div class="form-group">
+					<div class="col-md-6">
+		                <input name="token" type="hidden" ng-value="user.Token">
+					</div>
+		       	</div>
+		       	
+		       	<div class="form-group">
+					<div class="col-md-4 col-md-offset-4">
+						<button id="editProfile" name="editProfile" class="btn btn-primary">Update Profile</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	app.value('country_list', [[.countryList]]);
+	app.value('gender_list', [[.genderList]]);
+	app.value('user', [[.user]]);
+	
+</script>
+<script src="/public/js/Users/user_settings_profile.js"></script>
+[[end]]

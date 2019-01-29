@@ -1,0 +1,111 @@
+[[define "user_profile"]]
+
+<div class="panel panel-default" ng-controller="UserProfileCtrl">
+	[[template "flash" .]]		
+	<div class="panel-body">
+		<div class="col-md-4">
+			<div id="profile-namecard">
+				<div id="profile-namecard-top" class="row">
+					<div id="profile-pic-container" class="pull-left">
+						<img class="img-responsive img-rounded" ng-src="{{user.ProfilePicLink}}" alt="Profile Pic"/>
+					</div>
+					<div id="profile-details-container">
+						<h2 id="profile-details-firstname">{{user.FirstName}}</h2>
+						<div id="profile-details-username" class="text-muted">@{{user.Username}}</div>
+						<div><span class="glyphicon glyphicon-map-marker"></span> {{user.Country}}</div>
+						<div><span class="glyphicon glyphicon-time"></span> Joined {{user.JoinedDate}}</div>
+					</div>
+				</div>
+				<div id="profile-namecard-bottom" class="row">
+					<span ng-if="user.CanFollow">
+						<button class="btn btn-primary profile-follow-button" ng-show="user.IsFollowing" ng-click="followUser(user, false)">Followed</button>
+						<button class="btn btn-primary profile-follow-button" ng-show="!user.IsFollowing" ng-click="followUser(user, true)">Follow</button>
+					</span>
+				</div>
+			</div>
+			<div id="profile-reviews">
+				<div class="row">
+				(Reviews)
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-8">
+			<div id="profile-bio" class="row">
+				<div class="col-md-12">
+					{{user.Bio}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ul id="profile-tab-nav" class="nav nav-pills">
+					    <li class="active"><a href="#listings-tab" data-toggle="pill">Listings</a></li>
+					    <li><a href="#followings-tab" data-toggle="pill">Following</a></li>
+					    <li><a href="#followers-tab" data-toggle="pill">Followers</a></li>
+				  	</ul>
+			  	</div>
+			</div>
+			<div class="tab-content row">
+				<div id="listings-tab" class="tab-pane fade in active col-md-12">
+					<h3>Listings</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				</div>
+		    	<div id="followings-tab" class="tab-pane fade col-md-12">
+		      		
+	    			<span ng-if="followings.length > 0">
+	    				<div class="row">
+		    				<div class="user-card col-md-4 text-center" ng-repeat="following in followings">
+		    					<a ng-href="/{{following.Username}}">
+									<img class="img-responsive img-rounded" ng-src="{{following.ProfilePicLink}}" alt="Profile Pic"/>
+									<div>{{following.Username}}</div>
+								</a>
+								<span ng-if="following.CanFollow">
+									<button class="btn btn-primary profile-follow-button" ng-show="following.IsFollowing" ng-click="followUser(following, false)">Followed</button>
+									<button class="btn btn-primary profile-follow-button" ng-show="!following.IsFollowing" ng-click="followUser(following, true)">Follow</button>
+								</span>
+			    			</div>
+		    			</div>
+	    			</span>
+	    			<span ng-if="followings.length == 0">
+	    				No followers
+	    			</span>
+	    			<span ng-if="isLoading">Loading</span>
+		    	</div>
+		    	<div id="followers-tab" class="tab-pane fade col-md-12">
+	    			<span ng-if="followers.length > 0">
+	    				<div class="row">
+		    				<div class="user-card col-md-4 text-center" ng-repeat="follower in followers">
+		    					<a ng-href="/{{follower.Username}}">
+									<img class="img-responsive img-rounded" ng-src="{{follower.ProfilePicLink}}" alt="Profile Pic"/>
+									<div>{{follower.Username}}</div>
+								</a>
+								<span ng-if="follower.CanFollow">
+									<button class="btn btn-primary profile-follow-button" ng-show="follower.IsFollowing" ng-click="followUser(follower, false)">Followed</button>
+									<button class="btn btn-primary profile-follow-button" ng-show="!follower.IsFollowing" ng-click="followUser(follower, true)">Follow</button>
+								</span>
+			    			</div>
+		    			</div>
+	    			</span>
+	    			<span ng-if="followers.length == 0">
+	    				No followers
+	    			</span>
+		    		<span ng-if="isLoading">Loading</span>
+		    	</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	app.value('user', [[.user]]);
+	app.value('user_profile_pic_link', [[.userProfilePicLink]]);
+	app.value('user_country', [[.userCountry]]);
+	app.value('can_follow', [[.canFollow]]);
+	app.value('is_following', [[.isFollowing]]);
+	app.value('follower_count', [[.followerCount]]);
+	app.value('following_count', [[.followingCount]]);
+
+	app.value('access_token', [[.accessToken]]);
+</script>
+<script src="/public/js/Users/user_profile.js"></script>
+[[end]]

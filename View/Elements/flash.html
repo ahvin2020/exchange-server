@@ -1,0 +1,16 @@
+[[define "flash"]]
+	[[range .FlashError]]
+		<div class="alert alert-danger">[[.]]</div><p>
+	[[end]]
+	
+	[[range .FlashSuccess]]
+		<div class="alert alert-success">[[.]]</div><p>
+	[[end]]
+
+	<div class="alert-container">
+        <div class="alert alert-danger" ng-repeat="errorAlert in errorAlerts track by $index">
+            <button type="button" class="close" ng-click="removeAlert($index)">&times;</button>
+           	{{errorAlert}}
+        </div>
+	</div>
+[[end]]

@@ -1,0 +1,40 @@
+[[define "main"]]
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="exchange">
+		<meta name="keywords" content="exchange">
+		<title>[[.title]]</title>
+	
+		<!-- css files -->
+		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/public/css/style.css">
+		
+		<!-- js files -->
+		<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="/bower_components/angular/angular.min.js"></script>
+		<script src="/bower_components/parsleyjs/dist/parsley.min.js"></script>
+		<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	   	<script src="/bower_components/ng-file-upload-shim/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+		<script src="/bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+
+	    <script src="/public/js/main.js"></script>
+	</head>
+	<body ng-app="ExchangeApp">
+		<!-- header -->
+		[[template "header" .]]
+       	
+		<!-- content -->
+		<div class="container" role="main">
+			[[.content]]
+		</div>
+		
+		<!-- footer -->
+		[[template "footer" .]]
+	</body>
+</html>
+[[end]]
