@@ -12,6 +12,7 @@ import (
 	"github.com/zenazn/goji/web"
 
 	"exchange.com/exchange/controller"
+	. "exchange.com/exchange/controller"
 	"exchange.com/exchange/system"
 )
 
@@ -91,6 +92,17 @@ func main() {
 	goji.Post("/api/follow-user", userFollowController.FollowUser_Api)
 	goji.Get("/api/get-followers", userFollowController.GetFollowers_Api)
 	goji.Get("/api/get-followings", userFollowController.GetFollowings_Api)
+
+	// inbox
+	inboxController := &controller.InboxController{}
+	goji.Get("/inbox/:listing-id", application.Route(inboxController, "Chat_Page"))
+
+	// create the socket for chatting
+	//h := controller.NewHub()
+	//go h.Run()
+	//http.Handle("/ws", controller.WsHandler{H: h})
+	go InboxHub.Run()
+	http.HandleFunc("/ws", controller.ServeWs)
 
 	// user currency
 	userCurrencyController := &controller.UserCurrencyController{}

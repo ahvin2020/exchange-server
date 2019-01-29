@@ -1,0 +1,38 @@
+[[define "inbox_chat"]]
+<div class="panel panel-default" ng-controller="InboxChatCtrl">
+	<div class="panel-body">
+		<div>
+            <ul id="inbox-chat-messages">
+                <li class="media" ng-repeat="message in messages">
+                    <div class="media-left">Profile Pic</div>
+                    <div class="media-body">
+                        <div class="media-heading">
+                            Name
+                        </div>
+                        <div class="chat-time">
+                            time
+                        </div>
+                        <p class="chat-message">
+                            {{message.msg}}
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="inbox-chat-form">
+		<form id="inbox-chat-form-message">
+            <div class="input-group">
+    		    <textarea id="inbox-chat-form-message" class="form-control simplebox" ng-model="inboxChatFormMessage"></textarea>
+                <span class="input-group-addon btn btn-default" ng-click="sendChat()">Send</span>
+            </div>
+		</form>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+    // fill in form value if previously submitted
+    app.value('listing_id', [[.listingId]]);
+</script>
+<script src="/public/js/Inbox/inbox_chat.js"></script>
+[[end]]

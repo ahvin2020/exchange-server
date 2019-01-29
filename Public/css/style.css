@@ -161,3 +161,43 @@ input.parsley-error, select.parsley-error, textarea.parsley-error {
 	height: 20px;
 	background-color: #00ff00;
 }
+
+/*** inbox ***/
+#inbox-chat-messages {
+	height: 400px;
+	overflow-y: auto;
+	border: 1px dotted #b5b5b5;
+
+	list-style: outside none none;
+    margin-bottom: 0;
+    overflow-y: scroll;
+    padding: 0;
+}
+
+#inbox-chat-messages .media {
+	border-bottom: 1px dotted #e1e1e1;
+    margin: 0;
+    padding: 1em;
+    position: relative;
+}
+
+#inbox-chat-messages .chat-message {
+}
+
+#inbox-chat-messages .chat-time {
+	color: #b5b5b5;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+}
+
+#inbox-chat-form {
+	
+}
+
+#inbox-chat-form-message {
+	resize: none;
+	height: 66px;
+	overflow: hidden;
+	word-wrap: break-word;
+}
